@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.content_server.*
 class ServerActivity : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_server)

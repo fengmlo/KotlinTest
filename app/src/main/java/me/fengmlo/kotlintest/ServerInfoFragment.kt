@@ -13,6 +13,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.fragment_server_info.*
 import me.fengmlo.kotlintest.model.net.ServiceLiveInfo
 import me.fengmlo.kotlintest.net.Net
+import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 
@@ -30,12 +31,13 @@ class ServerInfoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        Net.instance().getServiceInfo()
-                .subscribeOn(Schedulers.io())
-                .subscribe({ /*initView(it)*/ }, { })
+//        Net.instance().getServiceInfo()
+//                .subscribeOn(Schedulers.io())
+//                .subscribe({ /*initView(it)*/ }, { })
 
         Net.instance().getLiveServiceInfo()
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     initView(it)
                     view?.invalidate()
